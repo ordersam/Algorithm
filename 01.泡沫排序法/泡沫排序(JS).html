@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>泡沫排序-JS</title>
+    <script>
+        function bubbleSort1 (arr) {
+            // i代表 幾個泡泡(最大值)浮現，最多只要 元素個數-1個泡泡 第一個自動變最小值
+            for (i = 0; i < arr.length - 1; i++) {
+                // j代表第一個數值的index，要和j+1比較，所以要扣掉已經有的泡泡再減一
+                for (j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        let tempValue = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = tempValue;
+                    }
+                }
+            }
+            console.log(arr)
+        } 
+        
+        function bubbleSort2 (arr) { 
+            var i = 0;
+            while (i < arr.length - 1) {
+                for (j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        let tempValue = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = tempValue;
+                    }
+                }
+                i++;
+            }
+            console.log(arr)
+        }
+    </script>
+</head>
+<body>
+    <button onclick="bubbleSort1([5, 3, 8, 2, 1, 4])">泡沫排序1</button>
+    <button onclick="bubbleSort2([5, 3, 8, 2, 1, 4])">泡沫排序2</button>
+</body>
+</html>
