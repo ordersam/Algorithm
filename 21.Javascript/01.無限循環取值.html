@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Infinite Loop Value</title>
+    <script>
+		// ====== 無限循環取值 ======
+		// 類似carousel
+		/*
+			fn(2, 4, -2) = 4
+			fn(2, 4, -1) = 2
+			fn(2, 4, 0) = 3
+			fn(2, 4, 1) = 4
+			fn(2, 4, 2) = 2
+			fn(2, 4, 3) = 3
+			fn(2, 4, 4) = 4
+			fn(2, 4, 5) = 2
+			fn(2, 4, 6) = 3
+		*/ 
+		function fn(min, max, value) {
+			// array
+			var length = max-min+1;
+			var array = [];
+			for (let i = 0; i < length; i++) {
+				array.push(min+i);
+			}
+			// index
+			if (value < 0) {
+				while (value < 0 ) {
+					value += length;
+				}
+			}
+			var index = value % length+1 < length ? value % length+1 : 0;
+			return array[index];
+		}
+		
+		// ====== 驗證 ======
+		var data = [[2, 4, -4, 2], [2, 4, -3, 3], [2, 4, -2, 4], [2, 4, -1, 2], [2, 4, 0, 3], [2, 4, 1, 4], [2, 4, 2, 2], [2, 4, 3, 3], [2, 4, 4, 4], [2, 4, 5, 2], [2, 4, 6, 3], [2, 4, 7, 4]];
+
+		window.onload = function() {
+			var result = true;
+			data.forEach(function([min, max, value, ans]) {
+				if (fn(min, max, value) !== ans) {
+					result = false;
+				};
+				// 主控台測試
+				console.assert(fn(min, max, value) === ans, `(${min}, ${max}, ${value}, ${ans}) not pass`);
+			});
+			var msg = document.querySelector("#msg");
+			if (result) {
+				msg.innerHTML = "pass";
+			}
+			else {
+				msg.innerHTML = "not pass";
+			}
+		};
+    </script>
+</head>
+<body>
+    <h1 id="msg"></h1>
+</body>
+</html>
