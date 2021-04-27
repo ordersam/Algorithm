@@ -67,19 +67,19 @@ namespace ConsoleApp1
         {
             for (int bubble = 0; bubble < array1.Length - 1; bubble++)
             {
-                for (int i = 1; i < array1.Length - 1 - bubble; i++)
+                for (int i = 0; i < array1.Length - 1 - bubble; i++)
                 {
-                    int prev = array1[i - 1];
-                    int after = array1[i];
+                    int prev = array1[i];
+                    int after = array1[i + 1];
                     if (prev > after)
-                        swap(array1, i - 1, i);
+                        Swap(array1, i, i + 1);
                 }
             }
 
             return string.Join(" ", array1);
         }
 
-        private static void swap(int[] array1, int prev, int after)
+        private static void Swap(int[] array1, int prev, int after)
         {
             int temp = array1[prev];
             array1[prev] = array1[after];
