@@ -8,7 +8,8 @@ namespace ConsoleApp1
 {
     class Bubble
     {
-        public static string bubble1(int[] array1)
+        // ======== for loop ========
+        public static string Bubble1(int[] array1)
         {
             int temp = 0;
             for (int i = 0; i < array1.Length - 1; i++)
@@ -24,6 +25,7 @@ namespace ConsoleApp1
                 }
             }
 
+
             string strArray = "";
             foreach (int element in array1)
             {
@@ -31,8 +33,9 @@ namespace ConsoleApp1
             }
             return strArray;
         }
-
-        public static string bubble2(int[] array1)
+        
+        // ======== while loop ========
+        public static string Bubble2(int[] array1)
         {
             int temp = 0;
             int i = 0;
@@ -57,5 +60,31 @@ namespace ConsoleApp1
             }
             return strArray;
         }
+
+        // ======== for loop improved ========
+        #region
+        public static string Bubble3(int[] array1)
+        {
+            for (int bubble = 0; bubble < array1.Length - 1; bubble++)
+            {
+                for (int i = 1; i < array1.Length - 1 - bubble; i++)
+                {
+                    int prev = array1[i - 1];
+                    int after = array1[i];
+                    if (prev > after)
+                        swap(array1, i - 1, i);
+                }
+            }
+
+            return string.Join(" ", array1);
+        }
+
+        private static void swap(int[] array1, int prev, int after)
+        {
+            int temp = array1[prev];
+            array1[prev] = array1[after];
+            array1[after] = temp;
+        }
+        #endregion
     }
 }
